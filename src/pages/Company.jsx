@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const Company = () => {
+    useEffect(() => {
+        document.title = "Company || Career Hut";
+      }, []);
+      
     return (
         <div>
-            company
-            
+            company   
         </div>
     );
 };

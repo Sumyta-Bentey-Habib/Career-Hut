@@ -1,13 +1,22 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Lottie from "lottie-react";
 import animationData from "../assets/lottie/registration.json";
-import { AuthContext } from "../context/AuthContext/AuthContext"; 
+import { AuthContext } from "../context/AuthContext/AuthContext";
+import { useNavigate } from "react-router";
 
 const Register = () => {
+
+  useEffect(() => {
+      document.title = "Register  || Career Hut";
+    }, []);
+
+
   const { createUser } = useContext(AuthContext);
   const [formData, setFormData] = useState({ email: "", password: "" });
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -20,13 +29,20 @@ const Register = () => {
       alert("Error: " + error.message);
     }
   };
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
 
   return (
     <div className="flex items-center justify-center min-h-screen p-6 bg-gradient-to-br from-blue-100 via-white to-blue-200">
       <div className="flex flex-col-reverse w-full max-w-5xl overflow-hidden bg-white shadow-2xl rounded-xl md:flex-row">
         {/* Form */}
         <div className="w-full p-10 md:w-1/2">
-          <h2 className="mb-6 text-3xl font-bold text-gray-800">Create your account</h2>
+          <h2 className="mb-6 text-3xl font-bold text-gray-800">
+            Create your account
+          </h2>
           <form className="space-y-5" onSubmit={handleSubmit}>
             <input
               type="text"
@@ -62,6 +78,17 @@ const Register = () => {
             Already have an account?{" "}
             <a href="/sign-in" className="text-blue-600 hover:underline">
               Sign in
+            </a>
+            <br />
+            <br />
+            <a href="/" class="relative px-6 py-3 font-bold text-white group">
+              <span
+                class="absolute inset-0 w-full h-full transition duration-300
+               ease-out transform -translate-x-2 -translate-y-2
+                bg-blue-600 group-hover:translate-x-0 group-hover:translate-y-0"
+              ></span>
+              <span class="absolute inset-0 w-full h-full border-4 border-black"></span>
+              <span class="relative">Return Home</span>
             </a>
           </p>
         </div>
