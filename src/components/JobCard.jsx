@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const JobCard = ({ job }) => {
-    const {title,location,jobType,category,description,company_logo,company,requirements,salaryRange,_id}=job;
+    const {title,location,description,company_logo,company,requirements,salaryRange,_id}=job;
     
   return (
     <div className="shadow-sm card bg-base-100 w-96">

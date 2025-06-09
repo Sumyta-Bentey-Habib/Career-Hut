@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   FaMapMarkerAlt,
   FaBriefcase,
@@ -31,6 +32,7 @@ const JobsDetails = () => {
     applicationDeadline,
     hr_email,
     hr_name,
+    _id,
   } = job;
 
   return (
@@ -122,12 +124,11 @@ const JobsDetails = () => {
 
         {/* Apply Now Button */}
         <div className="mt-6 text-center">
-          <a
-            href={`mailto:${hr_email}?subject=Application for ${title}`}
-            className="inline-flex items-center gap-2 px-6 py-3 text-white transition duration-200 bg-blue-600 rounded-full hover:bg-blue-700 hover:scale-105"
-          >
-            <FaPaperPlane /> Apply Now
-          </a>
+          <Link to={`/jobApply/${_id}`}>
+            <button className="inline-flex items-center gap-2 px-6 py-3 text-white transition duration-200 bg-blue-600 rounded-full hover:bg-blue-700 hover:scale-105">
+              <FaPaperPlane /> Apply Now
+            </button>
+          </Link>
         </div>
       </div>
     </div>

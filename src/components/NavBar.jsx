@@ -42,11 +42,20 @@ const NavBar = () => {
       <li>
         <NavLink to="/company">Company</NavLink>
       </li>
+      {
+        user && 
+    <>
+        <li>
+        <NavLink to="/myApplication">My Application</NavLink>
+        </li>
+    </>
+        
+      }
     </>
   );
 
   return (
-    <div className="navbar bg-base-100 shadow-sm rounded-3xl sticky top-0 z-50">
+    <div className="sticky top-0 z-50 shadow-sm navbar bg-base-100 rounded-3xl">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -67,7 +76,7 @@ const NavBar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="p-2 mt-3 shadow menu menu-sm dropdown-content bg-base-100 rounded-box z-10 w-52"
+            className="z-10 p-2 mt-3 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
           >
             {links}
           </ul>
@@ -79,14 +88,14 @@ const NavBar = () => {
         <ul className="px-1 menu menu-horizontal">{links}</ul>
       </div>
 
-      <div className="navbar-end flex items-center gap-2">
+      <div className="flex items-center gap-2 navbar-end">
         {user ? (
           <>
             <div
               className="tooltip tooltip-left"
               data-tip={user.displayName || user.email}
             >
-              <div className="w-10 h-10 rounded-full bg-purple-200 flex items-center justify-center text-purple-800 font-semibold cursor-default">
+              <div className="flex items-center justify-center w-10 h-10 font-semibold text-purple-800 bg-purple-200 rounded-full cursor-default">
                 {user.displayName?.charAt(0).toUpperCase() ||
                   user.email?.charAt(0).toUpperCase()}
               </div>
@@ -107,11 +116,11 @@ const NavBar = () => {
         )}
         <button onClick={toggleTheme} className="btn btn-ghost">
           {theme === "light" ? (
-            <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 20 20">
+            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
               <path d="M10 3.25a.75.75 0 01.75.75v1a.75.75 0 01-1.5 0v-1A.75.75 0 0110 3.25zm4.47 2.03a.75.75 0 011.06 1.06l-.71.7a.75.75 0 01-1.06-1.06l.71-.7zM16.75 10a.75.75 0 01-.75.75h-1a.75.75 0 010-1.5h1a.75.75 0 01.75.75zm-2.53 4.72a.75.75 0 10-1.06 1.06l.7.71a.75.75 0 101.06-1.06l-.7-.71zM10 15.75a.75.75 0 01.75.75v1a.75.75 0 01-1.5 0v-1a.75.75 0 01.75-.75zm-4.72-1.53a.75.75 0 10-1.06 1.06l.71.7a.75.75 0 001.06-1.06l-.7-.7zM4.25 10a.75.75 0 01.75.75h-1a.75.75 0 010-1.5h1a.75.75 0 01-.75.75zm2.53-4.72a.75.75 0 10-1.06-1.06l-.71.7a.75.75 0 001.06 1.06l.71-.7zM10 6a4 4 0 100 8 4 4 0 000-8z" />
             </svg>
           ) : (
-            <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 20 20">
+            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
               <path d="M17.293 13.293A8 8 0 116.707 2.707a8.003 8.003 0 0010.586 10.586z" />
             </svg>
           )}
